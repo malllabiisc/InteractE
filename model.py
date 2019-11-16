@@ -1,6 +1,6 @@
 from helper import *
 
-class InteractE(BaseModel):
+class InteractE(torch.nn.Module):
 	"""
 	Proposed method in the paper. Refer Section 6 of the paper for mode details 
 

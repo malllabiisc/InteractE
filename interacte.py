@@ -34,7 +34,7 @@ class Main(object):
 			self.device = torch.device('cpu')
 
 		self.load_data()
-		self.model        = self.add_model(self.p.model)
+		self.model        = self.add_model()
 		self.optimizer    = self.add_optimizer(self.model.parameters())
 
 	def load_data(self):
@@ -142,8 +142,7 @@ class Main(object):
 			'test_tail'	:   get_data_loader(TestDataset,  'test_tail',  self.p.batch_size),
 		}
 
-		if self.p.model == 'interacte':
-			self.chequer_perm	= self.get_chequer_perm()
+		self.chequer_perm	= self.get_chequer_perm()
 
 	def get_chequer_perm(self):
 		"""
@@ -187,13 +186,12 @@ class Main(object):
 		return chequer_perm
 
 
-	def add_model(self, model_name):
+	def add_model(self):
 		"""
 		Creates the computational graph
 
 		Parameters
 		----------
-		model_name:     Contains the model name to be created
 		
 		Returns
 		-------
@@ -444,7 +442,6 @@ if __name__ == "__main__":
 	parser.add_argument('--restore',   	dest="restore",       	action='store_true',            		help='Restore from the previously saved model')
 
 	# Model parameters
-	parser.add_argument('--model',          dest="model",           default='interacte',				help='The model to evaluate')
 	parser.add_argument("--lbl_smooth",     dest='lbl_smooth',	default=0.1,		type=float,		help='Label smoothing for true labels')
 	parser.add_argument("--embed_dim",	type=int,              	default=None,                   		help='Embedding dimension for entity and relation, ignored if k_h and k_w are set')
 	parser.add_argument('--bias',      	dest="bias",          	action='store_true',            		help='Whether to use bias in the model')
