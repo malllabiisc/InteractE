@@ -43,9 +43,7 @@ Source code for [AAAI 2020](https://aaai.org/Conferences/AAAI-20/) paper: **Inte
 * To restore and evaluate run:
 
   ```shell
-  python interacte.py --data FB15k-237 --gpu 0 
-  					--name fb15k_237_pretrained 
-  					--restore --epoch 0
+  python interacte.py --data FB15k-237 --gpu 0 --name fb15k_237_pretrained --restore --epoch 0
   ```
 
 ### Citation:
