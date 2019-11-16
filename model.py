@@ -1,41 +1,5 @@
 from helper import *
 
-def get_param(shape):
-	param = Parameter(torch.Tensor(*shape)); 	
-	xavier_normal_(param.data)
-	return param
-
-class BaseModel(torch.nn.Module):
-	def __init__(self,  params):
-		super(BaseModel, self).__init__()
-		self.p                  = params
-		self.ent_embed		= torch.nn.Embedding(self.p.num_ent,   self.p.embed_dim, padding_idx=None); xavier_normal_(self.ent_embed.weight)
-		self.rel_embed		= torch.nn.Embedding(self.p.num_rel*2, self.p.embed_dim, padding_idx=None); xavier_normal_(self.rel_embed.weight)
-		self.bceloss		= torch.nn.BCELoss()
-
-	def concat(self, e1_embed, rel_embed, form='plain'):
-		if form == 'plain':
-			e1_embed                  = e1_embed. view(-1, 1, self.p.k_w, self.p.k_h)
-			rel_embed                 = rel_embed.view(-1, 1, self.p.k_w, self.p.k_h)
-			stack_inp                 = torch.cat([e1_embed, rel_embed], 2)
-		elif form == 'alternate':
-			e1_embed                  = e1_embed. view(-1, 1, self.p.embed_dim)
-			rel_embed                 = rel_embed.view(-1, 1, self.p.embed_dim)
-			stack_inp                 = torch.cat([e1_embed, rel_embed], 1)
-			stack_inp                 = torch.transpose(stack_inp, 2, 1).reshape((-1, 1, 2*self.p.k_w, self.p.k_h))
-		else: raise NotImplementedError
-		return stack_inp
-
-	def loss(self, pred, true_label=None, sub_samp=None):
-		label_pos	= true_label[0]; 
-		label_neg	= true_label[1:]
-		loss 		= self.bceloss(pred, true_label)
-		return loss
-
-	def score(self, x):
-		pred = torch.sigmoid(x)
-		return pred
-
 class InteractE(BaseModel):
 	"""
 	Proposed method in the paper. Refer Section 6 of the paper for mode details 
@@ -51,7 +15,12 @@ class InteractE(BaseModel):
 		
 	"""
 	def __init__(self, params, chequer_perm):
-		super(InteractE, self).__init__(params)
+		super(InteractE, self).__init__()
+
+		self.p                  = params
+		self.ent_embed		= torch.nn.Embedding(self.p.num_ent,   self.p.embed_dim, padding_idx=None); xavier_normal_(self.ent_embed.weight)
+		self.rel_embed		= torch.nn.Embedding(self.p.num_rel*2, self.p.embed_dim, padding_idx=None); xavier_normal_(self.rel_embed.weight)
+		self.bceloss		= torch.nn.BCELoss()
 
 		self.inp_drop		= torch.nn.Dropout(self.p.inp_drop)
 		self.hidden_drop	= torch.nn.Dropout(self.p.hid_drop)
@@ -71,6 +40,12 @@ class InteractE(BaseModel):
 
 		self.register_parameter('bias', Parameter(torch.zeros(self.p.num_ent)))
 		self.register_parameter('conv_filt', Parameter(torch.zeros(self.p.num_filt, 1, self.p.ker_sz,  self.p.ker_sz))); xavier_normal_(self.conv_filt)
+
+	def loss(self, pred, true_label=None, sub_samp=None):
+		label_pos	= true_label[0]; 
+		label_neg	= true_label[1:]
+		loss 		= self.bceloss(pred, true_label)
+		return loss
 
 	def circular_padding_chw(self, batch, padding):
 		upper_pad	= batch[..., -padding:, :]
@@ -108,6 +83,6 @@ class InteractE(BaseModel):
 			x = torch.mul(x.unsqueeze(1), self.ent_embed(neg_ents)).sum(dim=-1)
 			x += self.bias[neg_ents]
 
-		pred	= self.score(x)
+		pred	= torch.sigmoid(x)
 
 		return pred

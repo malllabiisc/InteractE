@@ -200,9 +200,7 @@ class Main(object):
 		Creates the computational graph for model and initializes it
 		
 		"""
-		if   model_name	== 'conve' : 		model = ConvE(self.p)
-		elif model_name == 'interacte': 	model = InteractE(self.p, self.chequer_perm)
-		else: raise NotImplementedError
+		model = InteractE(self.p, self.chequer_perm)
 		model.to(self.device)
 		return model
 
@@ -219,8 +217,7 @@ class Main(object):
 		Returns an optimizer for learning the parameters of the model
 		
 		"""
-		if self.p.opt == 'adam' : return torch.optim.Adam(parameters, lr=self.p.lr, weight_decay=self.p.l2)
-		else                    : return torch.optim.SGD(parameters,  lr=self.p.lr, weight_decay=self.p.l2)
+		return torch.optim.Adam(parameters, lr=self.p.lr, weight_decay=self.p.l2)
 
 	def read_batch(self, batch, split):
 		"""
@@ -443,7 +440,6 @@ if __name__ == "__main__":
 	parser.add_argument("--lr",		type=float,             default=0.0001,					help='Learning Rate')
 	parser.add_argument("--epoch",		dest='max_epochs', 	default=300,		type=int,  		help='Maximum number of epochs')
 	parser.add_argument("--num_workers",	type=int,               default=10,                      		help='Maximum number of workers used in DataLoader')
-	parser.add_argument('--opt',            dest="opt",             default='adam',                 		help='Optimizer to use')
 	parser.add_argument('--seed',           dest="seed",            default=42,   		type=int,       	help='Seed to reproduce results')
 	parser.add_argument('--restore',   	dest="restore",       	action='store_true',            		help='Restore from the previously saved model')
 
@@ -468,8 +464,7 @@ if __name__ == "__main__":
 	
 
 	args = parser.parse_args()
-	if not args.restore: args.name = args.name + '_' + time.strftime("%d_%m_%Y") + '_' + time.strftime("%H:%M:%S")
-
+	
 	set_gpu(args.gpu)
 	np.random.seed(args.seed)
 	torch.manual_seed(args.seed)
