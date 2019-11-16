@@ -4,7 +4,7 @@
 
 Source code for [AAAI 2020](https://aaai.org/Conferences/AAAI-20/) paper: **InteractE: Improving Convolution-based Knowledge Graph Embeddings by Increasing Feature Interactions**
 
-![test image size](/Users/shikharvashishth/server/scratchd/home/shikhar/rel_gcn/InteractE/overview.png){:height="700px" width="400px"} **Overview of InteractE:** *Given entity and relation embeddings, InteractE generates multiple permutations of these embeddings and reshapes them using a "Chequered" reshaping function. Depthwise circular convolution is employed to convolve each of the reshaped permutations, which are then fed to a fully-connected layer to compute scores. Please refer to Section 6 of the paper for details.*
+![test image size](./overview.png){:height="700px" width="400px"} **Overview of InteractE:** *Given entity and relation embeddings, InteractE generates multiple permutations of these embeddings and reshapes them using a "Chequered" reshaping function. Depthwise circular convolution is employed to convolve each of the reshaped permutations, which are then fed to a fully-connected layer to compute scores. Please refer to Section 6 of the paper for details.*
 
 ### Dependencies
 
