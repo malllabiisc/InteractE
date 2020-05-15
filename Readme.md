@@ -13,8 +13,9 @@
 
 <h2 align="center">
   Overview of InteractE
+  <img align="center"  src="./overview.png" alt="...">
 </h2>
-<img align="center"  src="./overview.png" alt="...">
+
 Given entity and relation embeddings, InteractE generates multiple permutations of these embeddings and reshapes them using a "Chequered" reshaping function. Depthwise circular convolution is employed to convolve each of the reshaped permutations, which are then fed to a fully-connected layer to compute scores. Please refer to Section 6 of the paper for details.*
 
 ### Dependencies
