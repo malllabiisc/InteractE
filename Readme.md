@@ -1,9 +1,3 @@
-## InteractE: Improving Convolution-based Knowledge Graph Embeddings by Increasing Feature Interactions
-
-[![Conference](http://img.shields.io/badge/AAAI-2020-4b44ce.svg)](https://aaai.org/Conferences/AAAI-20/) [![Paper](http://img.shields.io/badge/paper-arxiv.1911.00219-B31B1B.svg)](https://arxiv.org/abs/1911.00219) [![Supplementary](http://img.shields.io/badge/supplementary-pdf-green.svg)]()
-
-Source code for [AAAI 2020](https://aaai.org/Conferences/AAAI-20/) paper: [**InteractE: Improving Convolution-based Knowledge Graph Embeddings by Increasing Feature Interactions**](https://arxiv.org/abs/1911.00219)
-
 <h1 align="center">
   InteractE
 </h1>
