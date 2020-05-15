@@ -34,7 +34,7 @@ Source code for [AAAI 2020](https://aaai.org/Conferences/AAAI-20/) paper: [**Int
   python interacte.py --data WN18RR --batch 256 --train_strategy one_to_n --feat_drop 0.2 --hid_drop 0.3 --perm 4 --ker_sz 11 --lr 0.001
   
   # YAGO03-10
-  python interacte.py --data YAGO3-10 --batch 128 --train_strategy one_to_n  --feat_drop 0.2 --hid_drop 0.3 
+  python interacte.py --data YAGO3-10 --train_strategy one_to_n  --feat_drop 0.2 --hid_drop 0.3 --ker_sz 7 --num_filt 64 --perm 2
   ```
   - `data` indicates the dataset used for training the model. Other options are `WN18RR` and `YAGO3-10`.
   - `gpu` is the GPU used for training the model.
