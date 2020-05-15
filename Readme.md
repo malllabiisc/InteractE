@@ -1,12 +1,22 @@
-## InteractE: Improving Convolution-based Knowledge Graph Embeddings by Increasing Feature Interactions
+<h1 align="center">
+  InteractE
+</h1>
+<h4 align="center">Improving Convolution-based Knowledge Graph Embeddings by Increasing Feature Interactions</h4>
+<p align="center">
+  <a href="https://aaai.org/Conferences/AAAI-20/"><img src="http://img.shields.io/badge/AAAI-2020-4b44ce.svg"></a>
+  <a href="https://arxiv.org/abs/1911.00219"><img src="http://img.shields.io/badge/Paper-PDF-red.svg"></a>
+  <a href="https://shikhar-vashishth.github.io/assets/pdf/interacte_supp.pdf"><img src="http://img.shields.io/badge/Supplementary-PDF-green.svg"></a>
+  <a href="https://github.com/malllabiisc/InteractE/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg">
+  </a>
+</p>
 
-[![Conference](http://img.shields.io/badge/AAAI-2020-4b44ce.svg)](https://aaai.org/Conferences/AAAI-20/) [![Paper](http://img.shields.io/badge/paper-arxiv.1911.00219-B31B1B.svg)](https://arxiv.org/abs/1911.00219) [![Supplementary](http://img.shields.io/badge/supplementary-pdf-green.svg)](https://shikhar-vashishth.github.io/assets/pdf/interacte_supp.pdf)
+<h2 align="center">
+  Overview of InteractE
+  <img align="center"  src="./overview.png" alt="...">
+</h2>
 
-Source code for [AAAI 2020](https://aaai.org/Conferences/AAAI-20/) paper: [**InteractE: Improving Convolution-based Knowledge Graph Embeddings by Increasing Feature Interactions**](https://arxiv.org/abs/1911.00219)
-
-![](./overview.png)
-
-**Overview of InteractE:** *Given entity and relation embeddings, InteractE generates multiple permutations of these embeddings and reshapes them using a "Chequered" reshaping function. Depthwise circular convolution is employed to convolve each of the reshaped permutations, which are then fed to a fully-connected layer to compute scores. Please refer to Section 6 of the paper for details.*
+Given entity and relation embeddings, InteractE generates multiple permutations of these embeddings and reshapes them using a "Chequered" reshaping function. Depthwise circular convolution is employed to convolve each of the reshaped permutations, which are then fed to a fully-connected layer to compute scores. Please refer to Section 6 of the paper for details.*
 
 ### Dependencies
 
@@ -50,7 +60,6 @@ Source code for [AAAI 2020](https://aaai.org/Conferences/AAAI-20/) paper: [**Int
 * To restore and evaluate run:
 
   ```shell
-  # FB15k-237
   python interacte.py --data FB15k-237 --gpu 0 --name fb15k_237_pretrained --restore --epoch 0
   ```
 
