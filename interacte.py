@@ -215,7 +215,8 @@ class Main(object):
 		Returns an optimizer for learning the parameters of the model
 		
 		"""
-		return torch.optim.Adam(parameters, lr=self.p.lr, weight_decay=self.p.l2)
+		if self.p.opt == 'adam': return torch.optim.Adam(parameters, lr=self.p.lr, weight_decay=self.p.l2)
+		else:			 return torch.optim.SGD(parameters, lr=self.p.lr, weight_decay=self.p.l2)
 
 	def read_batch(self, batch, split):
 		"""
@@ -432,6 +433,7 @@ if __name__ == "__main__":
 	# Training parameters
 	parser.add_argument("--gpu",		type=str,               default='0',					help='GPU to use, set -1 for CPU')
 	parser.add_argument("--train_strategy", type=str,               default='one_to_x',				help='Training strategy to use')
+	parser.add_argument("--opt", 		type=str,               default='adam',					help='Optimizer to use for training')
 	parser.add_argument('--neg_num',        dest="neg_num",         default=1000,    	type=int,       	help='Number of negative samples to use for loss calculation')
 	parser.add_argument('--batch',          dest="batch_size",      default=128,    	type=int,       	help='Batch size')
 	parser.add_argument("--l2",		type=float,             default=0.0,					help='L2 regularization')
