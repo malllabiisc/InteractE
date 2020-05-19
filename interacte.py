@@ -438,7 +438,7 @@ if __name__ == "__main__":
 	parser.add_argument('--batch',          dest="batch_size",      default=128,    	type=int,       	help='Batch size')
 	parser.add_argument("--l2",		type=float,             default=0.0,					help='L2 regularization')
 	parser.add_argument("--lr",		type=float,             default=0.0001,					help='Learning Rate')
-	parser.add_argument("--epoch",		dest='max_epochs', 	default=300,		type=int,  		help='Maximum number of epochs')
+	parser.add_argument("--epoch",		dest='max_epochs', 	default=500,		type=int,  		help='Maximum number of epochs')
 	parser.add_argument("--num_workers",	type=int,               default=10,                      		help='Maximum number of workers used in DataLoader')
 	parser.add_argument('--seed',           dest="seed",            default=42,   		type=int,       	help='Seed to reproduce results')
 	parser.add_argument('--restore',   	dest="restore",       	action='store_true',            		help='Restore from the previously saved model')
