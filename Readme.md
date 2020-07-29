@@ -67,21 +67,14 @@ Given entity and relation embeddings, InteractE generates multiple permutations 
 Please cite the following paper if you use this code in your work.
 
 ```bibtex
-@article{interacte2020,
-       author = {{Vashishth}, Shikhar and {Sanyal}, Soumya and {Nitin}, Vikram and
-         {Agrawal}, Nilesh and {Talukdar}, Partha},
-        title = "{InteractE: Improving Convolution-based Knowledge Graph Embeddings by Increasing Feature Interactions}",
-      journal = {arXiv e-prints},
-     keywords = {Computer Science - Machine Learning, Statistics - Machine Learning},
-         year = "2019",
-        month = "Nov",
-          eid = {arXiv:1911.00219},
-        pages = {arXiv:1911.00219},
-archivePrefix = {arXiv},
-       eprint = {1911.00219},
- primaryClass = {cs.LG},
-       adsurl = {https://ui.adsabs.harvard.edu/abs/2019arXiv191100219V},
-      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+@inproceedings{interacte2020,
+  title={InteractE: Improving Convolution-based Knowledge Graph Embeddings by Increasing Feature Interactions},
+  author={Vashishth, Shikhar and Sanyal, Soumya and Nitin, Vikram and Agrawal, Nilesh and Talukdar, Partha},
+  booktitle={Proceedings of the 34th AAAI Conference on Artificial Intelligence},
+  pages={3009--3016},
+  publisher={AAAI Press},
+  url={https://aaai.org/ojs/index.php/AAAI/article/view/5694},
+  year={2020}
 }
 ```
 
